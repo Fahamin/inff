@@ -19,6 +19,10 @@ public class scroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bgRender.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f);
+        if(GameManager.instance.gameStar)
+        {
+            bgRender.material.mainTextureOffset += new Vector2(speed * Time.deltaTime, 0f);
+
+        }
     }
 }

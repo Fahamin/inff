@@ -123,8 +123,8 @@ GameObject:
   - component: {fileID: 409822877}
   - component: {fileID: 409822876}
   - component: {fileID: 409822875}
+  - component: {fileID: 409822879}
   - component: {fileID: 409822874}
-  - component: {fileID: 409822878}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -212,7 +212,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &409822878
+--- !u!114 &409822879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 409822878}
+      - m_Target: {fileID: 409822879}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7097454266239046327}
   - component: {fileID: 1755377687619256481}
   - component: {fileID: 114649592893343452}
-  - component: {fileID: 58931726394707306}
   - component: {fileID: 50690310787742122}
+  - component: {fileID: 3135111370866031643}
   m_Layer: 0
   m_Name: enamy1
   m_TagString: enyme
@@ -95,22 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enymeSpeed: 0
---- !u!58 &58931726394707306
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3897374589770127679}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.43
 --- !u!50 &50690310787742122
 Rigidbody2D:
   serializedVersion: 4
@@ -132,3 +116,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &3135111370866031643
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897374589770127679}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017351508, y: -0.05899489}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.86, y: 0.41}
+    newSize: {x: 0.86, y: 0.41}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7697725, y: 0.2920102}
+  m_EdgeRadius: 0

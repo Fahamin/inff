@@ -2,47 +2,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
-    GameObject player;
+  public  GameObject player;
+//  public  Transform player_Postion;
+
     public float playerSpeed;
     private Rigidbody2D rb2d;
     public bool onGround = false;
 
-  //  public Animator crouch;
-    //CircleCollider2D circleCollider;
-  
+    public Animator animator;
+    CircleCollider2D circleCollider;
 
+
+    public static PlayerControl playerInstance;
     // Start is called before the first frame update
+
     void Start()
     {
+       
+        playerInstance = this;
+        animator = gameObject.GetComponent<Animator>();
 
         rb2d = GetComponent<Rigidbody2D>();
 
-     //   crouch = gameObject.GetComponent<Animator>();
-       // circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(GameManager.instance.gameStar)
+        {
+            animator.enabled = true;
+        }
+
         jumpPlayer();
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         onGround = false;
-
-      //  crouch.SetBool("crouch", false);
-
+      //  jumpBtnexit();
+        //  crouch.SetBool("crouch", false);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
             onGround = true;
-            jumpPlayer();
+        //    jumpPlayer();
+
+            if(animator.GetBool("jump"))
+            {
+                jumpBtnexit();
+
+            }
         }
         if (collision.gameObject.CompareTag("enyme"))
         {
@@ -52,26 +70,34 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+  
+
     public void playerDestory()
+    {
+     //   gameObject.SetActive(false);
+        Destroy(this.gameObject);
+        GameManager.instance.ParticleInstFun();
+      
+    }
+
+    public void finalPlayerDestroy()
     {
         Destroy(this.gameObject);
         GameManager.instance.gameOverpanel.SetActive(true);
-     //   reStartBtn.gameObject.SetActive(true);
-        GameManager.instance.enymeCheckDestory = false;
-        GameManager.instance.enemySpeed = 0f;
-        scroll.instance.speed = 0f;
-       
-    }
-    public void ReleaseCrouch()
-    {
-     //   crouch.SetBool("crouch", false);
-       // circleCollider.enabled = true;
+          GameManager.instance.enemySpeed = 0f;
+          scroll.instance.speed = 0f;
     }
 
+    public void ReleaseCrouch()
+    {
+        animator.SetBool("crouch", false);
+        circleCollider.enabled = true;
+    }
+     
     public void OnClickCrouch()
     {
-       // crouch.SetBool("crouch", true);
-        //circleCollider.enabled = false;
+        animator.SetBool("crouch", true);
+        circleCollider.enabled = false;
     }
 
     public void jumpPlayer()
@@ -79,43 +105,41 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && onGround == true)
         {
-         
+            animator.SetBool("jump", true);
             rb2d.AddForce(Vector2.up * playerSpeed, ForceMode2D.Impulse);
             onGround = false;
 
         }
+      
 
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && onGround == true)
         {
-         //   crouch.SetBool("crouch", true);
-            rb2d.AddForce(Vector2.up * playerSpeed, ForceMode2D.Impulse);
+            animator.SetBool("jump", true);
+            //   crouch.SetBool("crouch", true);
+         
 
         }
+        
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-           // crouch.SetBool("crouch", true);
+            animator.SetBool("jump",false);
+
+            // crouch.SetBool("crouch", true);
             //circleCollider.enabled = false;
         }
 
 
     }
 
-    public void jumpBtn()
+    public void jumpBtnexit()
     {
-        if(onGround == true)
-        {
-            rb2d.AddForce(Vector2.up * playerSpeed, ForceMode2D.Impulse);
-            onGround = false;
-        }
-
-        if (Input.touchCount == 1 && onGround == true)
-        {
-            rb2d.AddForce(Vector2.up * playerSpeed, ForceMode2D.Impulse);
-            //onGround = false;
-        }
-
+        animator.SetBool("jump", false);
     }
 
-  
+    public void jumpBtnEnter()
+    {
+        animator.SetBool("jump", true);
+    }
+   
 }
