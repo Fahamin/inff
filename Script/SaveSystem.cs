@@ -22,7 +22,6 @@ public static class SaveSystem
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-
             PlayerData data = bf.Deserialize(stream) as PlayerData;
             stream.Close();
         //    Debug.Log("h score: " + data.highScore);

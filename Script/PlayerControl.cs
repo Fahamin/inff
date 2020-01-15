@@ -74,7 +74,8 @@ public class PlayerControl : MonoBehaviour
 
     public void playerDestory()
     {
-     //   gameObject.SetActive(false);
+        //   gameObject.SetActive(false);
+        AudioManager.instance.Enemydestroy();
         Destroy(this.gameObject);
         GameManager.instance.ParticleInstFun();
       
@@ -90,14 +91,22 @@ public class PlayerControl : MonoBehaviour
 
     public void ReleaseCrouch()
     {
-        animator.SetBool("crouch", false);
-        circleCollider.enabled = true;
+        if(animator != null)
+        {
+            animator.SetBool("crouch", false);
+            circleCollider.enabled = true;
+
+        }
     }
      
     public void OnClickCrouch()
     {
-        animator.SetBool("crouch", true);
-        circleCollider.enabled = false;
+        if (animator != null)
+        {
+            animator.SetBool("crouch", true);
+            circleCollider.enabled = false;
+        }
+        AudioManager.instance.PlayerCrouch();
     }
 
     public void jumpPlayer()
@@ -139,7 +148,12 @@ public class PlayerControl : MonoBehaviour
 
     public void jumpBtnEnter()
     {
-        animator.SetBool("jump", true);
+        if(animator != null)
+        {
+            animator.SetBool("jump", true);
+
+        }
+        AudioManager.instance.PlayerJump();
     }
    
 }

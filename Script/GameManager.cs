@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject enyme1;
     public GameObject enyme2;
     public GameObject flyEnyme;
+
     public GameObject destroyParticleEffect;
     public Transform particlePostion;
 

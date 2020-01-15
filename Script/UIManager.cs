@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -38,13 +38,13 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
         GameManager.instance.tapbutton.gameObject.SetActive(false);
     }
     public void Home()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     public void Setting ()
     {
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
        // GameManager.instance.tapbutton.gameObject.SetActive(false);
        // GameManager.instance.pause.gameObject.SetActive(false);
     }
@@ -90,6 +90,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.enymeCheckDestory = true;
             Time.timeScale = 1;
             GameManager.instance.gameOverpanel.SetActive(false);
+
             GameManager.instance.NewPlayer();
             GameManager.instance.extraLife.SetActive(false);
         }
@@ -97,7 +98,7 @@ public class UIManager : MonoBehaviour
       else if(!Extrabtnclick)
                 {
                 GameManager.instance.extraLife.SetActive(false);
-                PlayerControl.playerInstance.finalPlayerDestroy();
+            PlayerControl.playerInstance.finalPlayerDestroy();
                }
 
     }
