@@ -1,55 +1,86 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip[] AudioClips ;
+    public AudioClip[] AudioClips;
     public AudioSource audioSource;
+    public AudioClip  Clickbutton ;
 
-    
-   
+    public bool muted;
+
     public static AudioManager instance;
     // Start is called before the first frame update
     void Start()
     {
-        if (instance == null)
+        starMode();
+    }
+
+    private void audioCheck()
+    {
+        int music = PlayerPrefs.GetInt("music");
+        int audio = PlayerPrefs.GetInt("audio");
+
+        if (music == 1)
         {
-            instance = this;
+            muted = false;
+        }
+        else if (music == 0)
+        {
+            muted = true;
+        }
+
+        if (audio == 1)
+        {
+            gameObject.SetActive(false);
+
+        }
+        if(audio == 0)
+        {
+            gameObject.SetActive(true);
+        }
+
+
+    }
+
+    void starMode()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(instance);
+            instance = this;
         }
+
         DontDestroyOnLoad(this);
         audioSource.GetComponent<AudioSource>();
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
+        audioCheck();
         //JointTranslationLimits2D==Logger''
-        
+
     }
 
     public void PlayAudio(int id)
     {
-        audioSource.PlayOneShot(AudioClips[id]);
+        if (muted)
+        {
+            audioSource.PlayOneShot(AudioClips[id]);
+        }
     }
 
+    public void buttonClick ()
+        {
 
-    public void Enemydestroy()
-    {
-        audioSource.PlayOneShot(AudioClips[3]);
-    }
+        audioSource.PlayOneShot(Clickbutton);
+        }
 
-    public void PlayerJump()
-    {
-        audioSource.PlayOneShot(AudioClips[1]);
-    }
-    public void PlayerCrouch()
-    {
-        audioSource.PlayOneShot(AudioClips[2]);
-    }
 
 }

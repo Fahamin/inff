@@ -6,20 +6,63 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+  
     int life_counter = 0;
     bool Extrabtnclick = true;
+
+    public GameObject audioOff;
+    public GameObject audioON;
+
+    public GameObject musicON;
+    public GameObject musicFF;
+
     // Start is called before the first frame update
     void Start()
     {
 
+
+        iconCheck();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        iconCheck();
     }
 
+    void iconCheck()
+    {
+        int audio = PlayerPrefs.GetInt("audio");
+        if (PlayerPrefs.HasKey("audio"))
+        {
+            if (audio == 1)
+            {
+                audioON.SetActive(false);
+                audioOff.SetActive(true);
+
+            }
+            if (audio == 0)
+            {
+                audioON.SetActive(true);
+                audioOff.SetActive(false);
+            }
+        }
+
+        if (PlayerPrefs.HasKey("music"))
+        {
+            if (PlayerPrefs.GetInt("music") == 0)
+            {
+                musicON.SetActive(true);
+                musicFF.SetActive(false);
+            }
+            if (PlayerPrefs.GetInt("music") == 1)
+            {
+                musicON.SetActive(false);
+                musicFF.SetActive(true);
+            }
+
+        }
+    }
     public void OnClickJumpBtn()
     {
         PlayerControl.playerInstance.jumpBtnEnter();
@@ -41,19 +84,25 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
         GameManager.instance.tapbutton.gameObject.SetActive(false);
+        AudioManager.instance.buttonClick();
     }
     public void Home()
     {
         SceneManager.LoadScene(0);
+        AudioManager.instance.buttonClick();
     }
     public void Setting ()
     {
         // SceneManager.LoadScene(1);
+        AudioManager.instance.buttonClick();
     }
 
     public void Play()
     {
         SceneManager.LoadScene(1);
+
+        AudioManager.instance.buttonClick();
+
        // GameManager.instance.tapbutton.gameObject.SetActive(false);
        // GameManager.instance.pause.gameObject.SetActive(false);
     }
@@ -71,6 +120,7 @@ public class UIManager : MonoBehaviour
     public void Pasue ()
     {
         GameManager.instance.pause.gameObject.SetActive(true);
+        AudioManager.instance.buttonClick();
         Time.timeScale = 0;
     }
 
@@ -79,6 +129,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.tapbutton.gameObject.SetActive(false);
         GameManager.instance.pause.gameObject.SetActive(false);
         Time.timeScale = 1;
+        AudioManager.instance.buttonClick();
     }
     public void ExtraLife()
     {
@@ -103,5 +154,51 @@ public class UIManager : MonoBehaviour
 
     }
   
+    
+    public void MusicON()
+    {
+
+                  PlayerPrefs.SetInt("music", 1);
+                  musicON.SetActive(false);
+                 musicFF.SetActive(true);
+
+    }
+
+    public void MusicOFF()
+    {
+        PlayerPrefs.SetInt("music", 0);
+        musicON.SetActive(true);
+        musicFF.SetActive(false);
+    }
+
+    public void AudioOFF()
+    {
+        PlayerPrefs.SetInt("audio", 0);
+        audioON.SetActive(true);
+        audioOff.SetActive(false);
+    }
+    public void AudioON()
+    { 
+     
+        PlayerPrefs.SetInt("audio", 1);
+        audioON.SetActive(false);
+        audioOff.SetActive(true);
+    }
+
+
+
+
+
+    public void musicONOFF()
+    {
+        if(PlayerPrefs.GetInt("music")==0)
+        {
+            musicON.SetActive(true);
+            musicFF.SetActive(false);
+        }
+        else
+        musicON.SetActive(false);
+        musicFF.SetActive(true);
+    }
 }
 

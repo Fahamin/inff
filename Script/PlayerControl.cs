@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
     public void playerDestory()
     {
         //   gameObject.SetActive(false);
-        AudioManager.instance.Enemydestroy();
+        AudioManager.instance.PlayAudio(3);
         Destroy(this.gameObject);
         GameManager.instance.ParticleInstFun();
       
@@ -106,7 +106,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("crouch", true);
             circleCollider.enabled = false;
         }
-        AudioManager.instance.PlayerCrouch();
+        AudioManager.instance.PlayAudio(2);
     }
 
     public void jumpPlayer()
@@ -153,7 +153,7 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("jump", true);
 
         }
-        AudioManager.instance.PlayerJump();
+        AudioManager.instance.PlayAudio(1);
     }
    
 }
