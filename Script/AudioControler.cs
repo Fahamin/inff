@@ -17,96 +17,52 @@ public class AudioControler : MonoBehaviour
     public string MusicKey = "_music";
 
 
+    public static AudioControler instance;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey(SoundKey))
-        {
-            if (PlayerPrefs.GetInt(SoundKey) == 1)
-            {
-                
-                SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[0];
-            }
-            else
-            {
-                SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[1];
-              
-            }
-        }
-        else
-        {
-            SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[1];
-       
-        }
-
-
-        if (PlayerPrefs.HasKey(MusicKey))
-        {
-            if (PlayerPrefs.GetInt(MusicKey) == 1)
-            {
-                MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[0];
-                
-            }
-            else
-            {
-                MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[1];
-              
-            }
-        }
-        else
-        {
-            MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[1];
-       
-        }
+        SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[PlayerPrefs.GetInt(SoundKey)];
+        MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[PlayerPrefs.GetInt(MusicKey)];
     }
 
     public void OnClickSoundBtn()
     {
-        if (PlayerPrefs.HasKey(SoundKey))
+
+        if (PlayerPrefs.GetInt(SoundKey) == 1)
         {
-            if(PlayerPrefs.GetInt(SoundKey) == 1)
-            {
-                PlayerPrefs.SetInt(SoundKey,0);
-                SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[0];
-            }
-            else
-            {
-                SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[1];
-                PlayerPrefs.SetInt(SoundKey, 1);
-            }
+            PlayerPrefs.SetInt(SoundKey, 0);
         }
         else
         {
-            SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[1];
             PlayerPrefs.SetInt(SoundKey, 1);
         }
 
-        
+        SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[PlayerPrefs.GetInt(SoundKey)];
 
     }
 
     public void OnClickMusicBtn()
     {
-        if (PlayerPrefs.HasKey(MusicKey))
+
+        if (PlayerPrefs.GetInt(MusicKey) == 1)
         {
-            if (PlayerPrefs.GetInt(MusicKey) == 1)
-            {
-                MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[0];
-                PlayerPrefs.SetInt(MusicKey, 0);
-            }
-            else
-            {
-                MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[1];
-                PlayerPrefs.SetInt(MusicKey, 1);
-            }
+            PlayerPrefs.SetInt(MusicKey, 0);
         }
         else
         {
-            MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[1];
             PlayerPrefs.SetInt(MusicKey, 1);
         }
+
+        MusicButton.GetComponent<Image>().sprite = MusicBtnSprites[PlayerPrefs.GetInt(MusicKey)];
+
     }
+
+
 
     // Update is called once per frame
     void Update()

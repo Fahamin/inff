@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip[] AudioClips;
     public AudioSource audioSource;
-    public AudioClip  Clickbutton ;
+   
 
     public bool muted;
 
@@ -15,35 +15,46 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+     //   instance = this;
         starMode();
+   //     AudioControlerCheck();
     }
 
-    private void audioCheck()
+    private void AudioControlerCheck()
     {
-        int music = PlayerPrefs.GetInt("music");
-        int audio = PlayerPrefs.GetInt("audio");
+        int music = 0;
+        int audio = 0;
+        if (AudioControler.instance != null)
+        {
+            if (PlayerPrefs.HasKey(AudioControler.instance.MusicKey))
+            {
+                music = PlayerPrefs.GetInt(AudioControler.instance.MusicKey);
+                audio = PlayerPrefs.GetInt(AudioControler.instance.SoundKey);
+                Debug.Log("music: " + music + ", Sound: " + audio) ;
+            }
+            else
+            {
+                Debug.Log("Key not found");
+            }
+        }
+        else
+        {
+            Debug.Log("Audio controller not found");
+        }
 
-        if (music == 1)
+
+        if (music == 0)
         {
             muted = false;
         }
-        else if (music == 0)
-        {
+        else
             muted = true;
-        }
-
-        if (audio == 1)
-        {
-            gameObject.SetActive(false);
-
-        }
-        if(audio == 0)
-        {
-            gameObject.SetActive(true);
-        }
 
 
     }
+
+
+
 
     void starMode()
     {
@@ -63,24 +74,28 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioCheck();
-        //JointTranslationLimits2D==Logger''
+        Debug.Log("music: " + PlayerPrefs.GetInt(AudioControler.instance.MusicKey) + ", Sound: " +PlayerPrefs.GetInt(AudioControler.instance.SoundKey));
+      //  AudioControlerCheck();
+        if(PlayerPrefs.GetInt("_music") == 0)
+        {
+            muted = false;
+        }
+        else
+        {
+            muted = true;
+        }
 
     }
 
     public void PlayAudio(int id)
     {
-        if (muted)
+        if (!muted)
         {
             audioSource.PlayOneShot(AudioClips[id]);
         }
     }
 
-    public void buttonClick ()
-        {
-
-        audioSource.PlayOneShot(Clickbutton);
-        }
+   
 
 
 }

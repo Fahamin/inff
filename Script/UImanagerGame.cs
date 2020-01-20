@@ -41,24 +41,24 @@ public class UImanagerGame : MonoBehaviour
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
         GameManager.instance.tapbutton.gameObject.SetActive(false);
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
     }
     public void Home()
     {
         SceneManager.LoadScene(0);
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
     }
     public void Setting()
     {
         // SceneManager.LoadScene(1);
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
     }
 
     public void Play()
     {
         SceneManager.LoadScene(1);
 
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
 
         // GameManager.instance.tapbutton.gameObject.SetActive(false);
         // GameManager.instance.pause.gameObject.SetActive(false);
@@ -77,7 +77,7 @@ public class UImanagerGame : MonoBehaviour
     public void Pasue()
     {
         GameManager.instance.pause.gameObject.SetActive(true);
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
         Time.timeScale = 0;
     }
 
@@ -86,7 +86,7 @@ public class UImanagerGame : MonoBehaviour
         GameManager.instance.tapbutton.gameObject.SetActive(false);
         GameManager.instance.pause.gameObject.SetActive(false);
         Time.timeScale = 1;
-        AudioManager.instance.buttonClick();
+        AudioManager.instance.PlayAudio(0);
     }
     public void ExtraLife()
     {
