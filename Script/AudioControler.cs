@@ -42,6 +42,7 @@ public class AudioControler : MonoBehaviour
             PlayerPrefs.SetInt(SoundKey, 1);
         }
 
+        AudioManager.instance.SoundMuteControl();
         SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[PlayerPrefs.GetInt(SoundKey)];
 
     }
@@ -62,6 +63,7 @@ public class AudioControler : MonoBehaviour
 
     }
 
+   
 
 
     // Update is called once per frame

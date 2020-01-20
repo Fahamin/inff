@@ -71,6 +71,19 @@ public class AudioManager : MonoBehaviour
         audioSource.GetComponent<AudioSource>();
 
     }
+
+    public void SoundMuteControl()
+    {
+        if(PlayerPrefs.GetInt("_sound") == 0)
+        {
+
+        }
+        else
+        {
+            GetComponent<AudioSource>().enabled = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -91,8 +104,19 @@ public class AudioManager : MonoBehaviour
     {
         if (!muted)
         {
-            audioSource.PlayOneShot(AudioClips[id]);
+            AudioSource source = GetComponent<AudioSource>();
+            if (source != null)
+            {
+                audioSource.PlayOneShot(AudioClips[id]);
+            }
+            else
+            {
+                AudioSource sc = gameObject.AddComponent<AudioSource>() as AudioSource;
+                sc.PlayOneShot(AudioClips[id]);
+            }
+
         }
+       
     }
 
    
