@@ -9,6 +9,9 @@ public class AudioControler : MonoBehaviour
     public GameObject SoundButton;
     public GameObject MusicButton;
 
+ 
+
+
     public Sprite[] SoundBtnSprites;
     public Sprite[] MusicBtnSprites;
 
@@ -36,13 +39,14 @@ public class AudioControler : MonoBehaviour
         if (PlayerPrefs.GetInt(SoundKey) == 1)
         {
             PlayerPrefs.SetInt(SoundKey, 0);
+            
         }
         else
         {
             PlayerPrefs.SetInt(SoundKey, 1);
         }
 
-        AudioManager.instance.SoundMuteControl();
+        AudioManager.instance.SoundMuteControl(PlayerPrefs.GetInt(SoundKey));
         SoundButton.GetComponent<Image>().sprite = SoundBtnSprites[PlayerPrefs.GetInt(SoundKey)];
 
     }

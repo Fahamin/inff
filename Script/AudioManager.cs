@@ -5,121 +5,74 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip[] AudioClips;
-    public AudioSource audioSource;
-   
+    public AudioClip[] audioClips;
+    public bool audioMuted;
 
-    public bool muted;
 
     public static AudioManager instance;
-    // Start is called before the first frame update
-    void Start()
+
+    public void Start()
     {
-     //   instance = this;
-        starMode();
-   //     AudioControlerCheck();
-    }
-
-    private void AudioControlerCheck()
-    {
-        int music = 0;
-        int audio = 0;
-        if (AudioControler.instance != null)
-        {
-            if (PlayerPrefs.HasKey(AudioControler.instance.MusicKey))
-            {
-                music = PlayerPrefs.GetInt(AudioControler.instance.MusicKey);
-                audio = PlayerPrefs.GetInt(AudioControler.instance.SoundKey);
-                Debug.Log("music: " + music + ", Sound: " + audio) ;
-            }
-            else
-            {
-                Debug.Log("Key not found");
-            }
-        }
-        else
-        {
-            Debug.Log("Audio controller not found");
-        }
-
-
-        if (music == 0)
-        {
-            muted = false;
-        }
-        else
-            muted = true;
-
-
-    }
-
-
-
-
-    void starMode()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
+        if(instance == null)
         {
             instance = this;
         }
-
-        DontDestroyOnLoad(this);
-        audioSource.GetComponent<AudioSource>();
-
-    }
-
-    public void SoundMuteControl()
-    {
-        if(PlayerPrefs.GetInt("_sound") == 0)
-        {
-
-        }
         else
         {
-            GetComponent<AudioSource>().enabled = false;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("music: " + PlayerPrefs.GetInt(AudioControler.instance.MusicKey) + ", Sound: " +PlayerPrefs.GetInt(AudioControler.instance.SoundKey));
-      //  AudioControlerCheck();
-        if(PlayerPrefs.GetInt("_music") == 0)
-        {
-            muted = false;
-        }
-        else
-        {
-            muted = true;
+            Destroy(gameObject);
         }
 
+        DontDestroyOnLoad(gameObject);
+        SoundMuteControl(PlayerPrefs.GetInt("_sound"));
     }
 
     public void PlayAudio(int id)
     {
-        if (!muted)
+        if (!audioMuted)
         {
-            AudioSource source = GetComponent<AudioSource>();
-            if (source != null)
+            AudioSource _sc = GetComponent<AudioSource>();
+            if (_sc.enabled)
             {
-                audioSource.PlayOneShot(AudioClips[id]);
+                _sc.PlayOneShot(audioClips[id]);
             }
             else
             {
-                AudioSource sc = gameObject.AddComponent<AudioSource>() as AudioSource;
-                sc.PlayOneShot(AudioClips[id]);
+
+                GameObject mainCam = GameObject.Find("Main Camera");
+
+                AudioSource _newsc = mainCam.gameObject.GetComponent<AudioSource>();
+                Debug.Log("Id: " + id);
+                _newsc.PlayOneShot(audioClips[id]);
             }
 
+            Debug.Log("");
         }
-       
+    }
+    
+
+    private void Update()
+    {
+        if(PlayerPrefs.GetInt("_music") == 0)
+        {
+            audioMuted = false;
+        }
+        else
+        {
+            audioMuted = true;
+        }
     }
 
-   
-
-
+    public void SoundMuteControl(int id)
+    {
+        AudioSource sc = GetComponent<AudioSource>();
+        if (id == 0)
+        {
+            sc.enabled = false;
+        }
+        else
+        {
+            sc.enabled = true;
+        }
+        Debug.Log("scource: " + id);
+    }
 }

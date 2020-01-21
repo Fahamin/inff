@@ -140,11 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480d7fb46f12b0b47bc484cb330c8719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioClips:
+  audioClips:
   - {fileID: 8300000, guid: c83633c41599c1045bd928edd346e63a, type: 3}
   - {fileID: 8300000, guid: 9684b5f968489f14790e46d75fa9961a, type: 3}
   - {fileID: 8300000, guid: d35829fab19390745a3b648f59325a00, type: 3}
   - {fileID: 8300000, guid: 76ed0c9fc4069f14daa7a0f13ef9966b, type: 3}
-  audioSource: {fileID: 2857108023804218011}
-  Clickbutton: {fileID: 0}
-  muted: 0
+  audioMuted: 0
