@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine;
+
 public class UImanagerGame : MonoBehaviour
 {
     int life_counter = 0;
@@ -65,10 +65,11 @@ public class UImanagerGame : MonoBehaviour
     }
     public void Tapbutton()
     {
-
+      
         GameManager.instance.gameStar = true;
         Time.timeScale = 1;
         GameManager.instance.tapbutton.gameObject.SetActive(false);
+        GameManager.instance.pause.gameObject.SetActive(false);
     }
     public void Leaderboard()
     {

@@ -103,10 +103,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (animator != null)
         {
+            AudioManager.instance.PlayAudio(2);
             animator.SetBool("crouch", true);
             circleCollider.enabled = false;
         }
-        AudioManager.instance.PlayAudio(2);
     }
 
     public void jumpPlayer()
@@ -150,10 +150,10 @@ public class PlayerControl : MonoBehaviour
     {
         if(animator != null)
         {
+            AudioManager.instance.PlayAudio(1);
             animator.SetBool("jump", true);
 
         }
-        AudioManager.instance.PlayAudio(1);
     }
    
 }
