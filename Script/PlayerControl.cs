@@ -148,8 +148,9 @@ public class PlayerControl : MonoBehaviour
 
     public void jumpBtnEnter()
     {
-        if(animator != null)
+        if(animator != null )
         {
+        
             AudioManager.instance.PlayAudio(1);
             animator.SetBool("jump", true);
 
