@@ -41,26 +41,26 @@ public class PlayerControl : MonoBehaviour
             animator.enabled = true;
         }
 
-        jumpPlayer();
+      
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         onGround = false;
-      //  jumpBtnexit();
-        //  crouch.SetBool("crouch", false);
+    
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
             onGround = true;
-        //    jumpPlayer();
+      
 
             if(animator.GetBool("jump"))
             {
                 jumpBtnexit();
 
             }
+            
         }
         if (collision.gameObject.CompareTag("enyme"))
         {
@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
 
     public void playerDestory()
     {
-        //   gameObject.SetActive(false);
+       
         AudioManager.instance.PlayAudio(3);
         Destroy(this.gameObject);
         GameManager.instance.ParticleInstFun();
@@ -109,51 +109,24 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public void jumpPlayer()
-    {
-
-        if (Input.GetKeyDown(KeyCode.Space) && onGround == true)
-        {
-            animator.SetBool("jump", true);
-            rb2d.AddForce(Vector2.up * playerSpeed, ForceMode2D.Impulse);
-            onGround = false;
-
-        }
-      
-
-
-        if (Input.GetKeyDown(KeyCode.UpArrow) && onGround == true)
-        {
-            animator.SetBool("jump", true);
-            //   crouch.SetBool("crouch", true);
-         
-
-        }
-        
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            animator.SetBool("jump",false);
-
-            // crouch.SetBool("crouch", true);
-            //circleCollider.enabled = false;
-        }
-
-
-    }
+   
 
     public void jumpBtnexit()
     {
-        animator.SetBool("jump", false);
+        if (animator != null)
+        {
+            animator.SetBool("jump", false);
+        }
     }
 
     public void jumpBtnEnter()
     {
         if(animator != null )
         {
-        
+
             AudioManager.instance.PlayAudio(1);
             animator.SetBool("jump", true);
-
+          
         }
     }
    

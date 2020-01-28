@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1897750395461379681}
   - component: {fileID: 9111276702129879939}
   - component: {fileID: 114007831004392590}
-  - component: {fileID: 58571177708182782}
+  - component: {fileID: 1469106077333889787}
+  - component: {fileID: 1552968162}
   m_Layer: 0
   m_Name: enamy4
   m_TagString: enyme
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enymeSpeed: 0
---- !u!58 &58571177708182782
+--- !u!58 &1469106077333889787
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,6 +108,25 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003470242, y: -0.055524766}
+  m_Offset: {x: 0.0000004172325, y: -0.09280133}
   serializedVersion: 2
-  m_Radius: 0.40831226
+  m_Radius: 0.23023415
+--- !u!95 &1552968162
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015836576469799978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74b51aa6d574b7d4699b62d5c21afb2d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

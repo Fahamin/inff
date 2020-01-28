@@ -19,7 +19,10 @@ public class UImanagerGame : MonoBehaviour
         
     }
 
-
+    public void OnClickJumpExitBtn()
+    {
+        PlayerControl.playerInstance.jumpBtnexit();
+    }
     public void OnClickJumpBtn()
     {
         PlayerControl.playerInstance.jumpBtnEnter();

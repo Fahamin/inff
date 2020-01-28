@@ -16,9 +16,18 @@ public class EffectDestroyer : MonoBehaviour
 
     public void GameOver()
     {
+        if (GameManager.instance.newScoreImg)
+        {
+            GameManager.instance.highSocreImg.gameObject.SetActive(true);
+
+        }
+
         GameManager.instance.gameOverpanel.SetActive(true);
+
         Destroy(gameObject);
         Time.timeScale = 0;
+
+     
 
         GameManager.instance.enymeCheckDestory = false;
        //  GameManager.instance.enemySpeed = 0f;

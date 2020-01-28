@@ -63,21 +63,7 @@ public class UIManager : MonoBehaviour
 
         }
     }
-    public void OnClickJumpBtn()
-    {
-        PlayerControl.playerInstance.jumpBtnEnter();
-    }
-
-    public void OnClickCrouchBtn()
-    {
-        PlayerControl.playerInstance.OnClickCrouch();
-
-    }
-    public void OnClickRelaseBtn()
-    {
-        PlayerControl.playerInstance.ReleaseCrouch();
-
-    }
+   
 
     public void Restart()
     {
@@ -160,7 +146,6 @@ public class UIManager : MonoBehaviour
                  PlayerPrefs.SetInt("music", 1);
                  musicON.SetActive(false);
                  musicFF.SetActive(true);
-
     }
 
     public void MusicOFF()
